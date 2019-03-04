@@ -28,7 +28,7 @@ class App extends Component {
 
     this.setState({ uploadFile: newfile });
 
-    newfile.forEach(this.processUpload);
+    // newfile.forEach(this.processUpload);
   };
 
   // updateFile = (id, data) => {
