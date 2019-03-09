@@ -1,14 +1,11 @@
 import React from "react";
 import Dropzone from "react-dropzone";
 import { DropContainer, UploadMessage } from "../DropContainer/styles";
-import FormContainer from "../Form/FormContainer";
 
 const Upload = ({ onUpload }) => {
   const renderDragMessage = (isDragActive, isDragReject) => {
     if (!isDragActive) {
-      return (
-        <UploadMessage>Arraste o arquivo ou clique aqui ...</UploadMessage>
-      );
+      return <UploadMessage>Arraste uma foto ou clique aqui ...</UploadMessage>;
     }
 
     if (isDragReject) {
@@ -24,7 +21,6 @@ const Upload = ({ onUpload }) => {
 
   return (
     <div>
-      <FormContainer onSubmit={() => {}} />
       <Dropzone accept="image/png" onDropAccepted={onUpload}>
         {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
           <DropContainer

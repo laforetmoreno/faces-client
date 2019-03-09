@@ -10,7 +10,7 @@ export default createGlobalStyle`
   }
 
   body {
-    font-family: "arial";
+    font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     background: #143a7c;
     text-rendering: optimizeLegibility;

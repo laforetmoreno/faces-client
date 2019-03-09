@@ -5,13 +5,15 @@ import api from "./services/api";
 import GlobalStyle from "./styles/global";
 import Container from "./components/Container/styles";
 import Content from "./components/Content/syles";
-import FormContainer from "./components/Form/FormContainer";
+import FormContainer from "./components/FormContainer/Form";
 import Upload from "./components/Upload/Upload";
 import FileList from "./components/FileList/FileList";
+import logoHurb from "./assets/logoHurb.png";
 
 class App extends Component {
   state = {
-    uploadedFiles: []
+    uploadedFiles: [],
+    user: {}
   };
 
   // async componentDidMount() {
@@ -66,30 +68,30 @@ class App extends Component {
 
     data.append("file", uploadedFile.file, uploadedFile.name);
 
-    if (image.includes(uploadedFile.name)) {
-      this.updateFile(uploadedFile.id, {
-        uploaded: false,
-        error: true
-      });
-    } else {
-      api
-        .post("images", data, {
-          onUploadProgress: e => {
-            const progress = parseInt(Math.round((e.loaded * 100) / e.total));
+    // if (image.includes(uploadedFile.name)) {
+    //   this.updateFile(uploadedFile.id, {
+    //     uploaded: false,
+    //     error: true
+    //   });
+    // } else {
+    api
+      .post("images", data, {
+        onUploadProgress: e => {
+          const progress = parseInt(Math.round((e.loaded * 100) / e.total));
 
-            this.updateFile(uploadedFile.id, {
-              progress
-            });
-          }
-        })
-        .then(response => {
           this.updateFile(uploadedFile.id, {
-            uploaded: true,
-            id: response.data._id,
-            url: response.data.url
+            progress
           });
+        }
+      })
+      .then(response => {
+        this.updateFile(uploadedFile.id, {
+          uploaded: true,
+          id: response.data._id,
+          url: response.data.url
         });
-    }
+      });
+    // }
   };
 
   handleDelete = async id => {
@@ -104,21 +106,28 @@ class App extends Component {
   //   this.state.uploadedFiles.forEach(file => URL.revokeObjectURL(file.preview));
   // }
 
-  render() {
+  handleSubmit = async data => {
     const { uploadedFiles } = this.state;
 
+    data.avatar = uploadedFiles.map(file => file.url);
+
+    await api.post("/users", data);
+  };
+
+  render() {
+    const { uploadedFiles } = this.state;
     return (
       <Container>
+        <header>
+          <img src={logoHurb} alt="Logo hurb" />
+          <span>Faces</span>
+        </header>
         <Content>
-          {/* <FormContainer
-            onUpload={this.handleUpload}
-            files={uploadedFiles}
-            onDelete={this.handleDelete}
-          /> */}
           <Upload onUpload={this.handleUpload} />
           {!!uploadedFiles.length && (
             <FileList files={uploadedFiles} onDelete={this.handleDelete} />
           )}
+          <FormContainer onSubmit={this.handleSubmit} />
         </Content>
         <GlobalStyle />
       </Container>
