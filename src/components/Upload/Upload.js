@@ -1,6 +1,7 @@
 import React from "react";
 import Dropzone from "react-dropzone";
 import { DropContainer, UploadMessage } from "../DropContainer/styles";
+import FormContainer from "../Form/FormContainer";
 
 const Upload = ({ onUpload }) => {
   const renderDragMessage = (isDragActive, isDragReject) => {
@@ -22,18 +23,21 @@ const Upload = ({ onUpload }) => {
   };
 
   return (
-    <Dropzone accept="image/png" onDropAccepted={onUpload}>
-      {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
-        <DropContainer
-          {...getRootProps()}
-          isDragActive={isDragActive}
-          isDragReject={isDragReject}
-        >
-          <input {...getInputProps()} />
-          {renderDragMessage(isDragActive, isDragReject)}
-        </DropContainer>
-      )}
-    </Dropzone>
+    <div>
+      <FormContainer onSubmit={() => {}} />
+      <Dropzone accept="image/png" onDropAccepted={onUpload}>
+        {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
+          <DropContainer
+            {...getRootProps()}
+            isDragActive={isDragActive}
+            isDragReject={isDragReject}
+          >
+            <input {...getInputProps()} />
+            {renderDragMessage(isDragActive, isDragReject)}
+          </DropContainer>
+        )}
+      </Dropzone>
+    </div>
   );
 };
 

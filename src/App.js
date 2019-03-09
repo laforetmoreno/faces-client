@@ -5,6 +5,7 @@ import api from "./services/api";
 import GlobalStyle from "./styles/global";
 import Container from "./components/Container/styles";
 import Content from "./components/Content/syles";
+import FormContainer from "./components/Form/FormContainer";
 import Upload from "./components/Upload/Upload";
 import FileList from "./components/FileList/FileList";
 
@@ -13,19 +14,19 @@ class App extends Component {
     uploadedFiles: []
   };
 
-  async componentDidMount() {
-    // const response = await api.get("posts");
-    // this.setState({
-    //   uploadedFiles: response.data.map(file => ({
-    //     id: file._id,
-    //     name: file.name,
-    //     readableSize: filesize(file.size),
-    //     preview: file.url,
-    //     uploaded: true,
-    //     url: file.url
-    //   }))
-    // });
-  }
+  // async componentDidMount() {
+  //   const response = await api.get("posts");
+  //   this.setState({
+  //     uploadedFiles: response.data.map(file => ({
+  //       id: file._id,
+  //       name: file.name,
+  //       readableSize: filesize(file.size),
+  //       preview: file.url,
+  //       uploaded: true,
+  //       url: file.url
+  //     }))
+  //   });
+  // }
 
   handleUpload = files => {
     const uploadedFiles = files.map(file => ({
@@ -99,9 +100,9 @@ class App extends Component {
     });
   };
 
-  componentWillUnmount() {
-    this.state.uploadedFiles.forEach(file => URL.revokeObjectURL(file.preview));
-  }
+  // componentWillUnmount() {
+  //   this.state.uploadedFiles.forEach(file => URL.revokeObjectURL(file.preview));
+  // }
 
   render() {
     const { uploadedFiles } = this.state;
@@ -109,6 +110,11 @@ class App extends Component {
     return (
       <Container>
         <Content>
+          {/* <FormContainer
+            onUpload={this.handleUpload}
+            files={uploadedFiles}
+            onDelete={this.handleDelete}
+          /> */}
           <Upload onUpload={this.handleUpload} />
           {!!uploadedFiles.length && (
             <FileList files={uploadedFiles} onDelete={this.handleDelete} />
