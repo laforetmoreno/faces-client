@@ -9,6 +9,7 @@ import FormContainer from "./components/FormContainer/Form";
 import Upload from "./components/Upload/Upload";
 import FileList from "./components/FileList/FileList";
 import logoHurb from "./assets/logoHurb.png";
+import Header from "./components/Header/styles";
 
 class App extends Component {
   state = {
@@ -106,22 +107,23 @@ class App extends Component {
   //   this.state.uploadedFiles.forEach(file => URL.revokeObjectURL(file.preview));
   // }
 
-  handleSubmit = async data => {
+  handleSubmit = async user => {
     const { uploadedFiles } = this.state;
 
-    data.avatar = uploadedFiles.map(file => file.url);
+    if (!user.name) return;
 
-    await api.post("/users", data);
+    user.avatar = uploadedFiles.map(file => file.url);
+    await api.post("/users", user);
   };
 
   render() {
     const { uploadedFiles } = this.state;
     return (
       <Container>
-        <header>
+        <Header>
           <img src={logoHurb} alt="Logo hurb" />
           <span>Faces</span>
-        </header>
+        </Header>
         <Content>
           <Upload onUpload={this.handleUpload} />
           {!!uploadedFiles.length && (

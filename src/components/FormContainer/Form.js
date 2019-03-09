@@ -61,12 +61,7 @@ class FormContainer extends Component {
           placeholder="Telefone (Opcional)"
           name="phone"
         />
-        <Button
-          colorPrimary
-          rounded
-          fluid
-          // onClick
-        >
+        <Button colorPrimary rounded fluid>
           Cadastrar
         </Button>
       </Form>
