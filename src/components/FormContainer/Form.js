@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Form } from "./styles";
-import { Button } from "../Button/styles";
+import Form from "./styles";
+import Button from "../Button/styles";
 
 class FormContainer extends Component {
   state = {

@@ -5,12 +5,8 @@ import api from "./services/api";
 import GlobalStyle from "./styles/global";
 import Container from "./components/Container/styles";
 import Content from "./components/Content/syles";
-import FormContainer from "./components/FormContainer/Form";
-import Upload from "./components/Upload/Upload";
-import FileList from "./components/FileList/FileList";
 import logoHurb from "./assets/logoHurb.png";
 import Header from "./components/Header/styles";
-import { Button } from "./components/Button/styles";
 import FeedbackSuccess from "./components/FeedbackSuccess/FeedbackSuccess";
 import SubscribeEmployees from "./components/SubscribeEmployees/SubscribeEmployees";
 

@@ -1,7 +1,15 @@
 import styled from "styled-components";
 
-export const Form = styled.form`
+const Form = styled.form`
   padding: 20px 0;
+
+  @media (max-width: 767px) {
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0 10px;
+  }
 
   input {
     padding: 10px;
@@ -12,3 +20,5 @@ export const Form = styled.form`
     width: 100%;
   }
 `;
+
+export default Form;

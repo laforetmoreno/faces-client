@@ -6,6 +6,10 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  @media (max-width: 767px) {
+    justify-content: flex-end;
+  }
 `;
 
 export default Container;

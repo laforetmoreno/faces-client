@@ -1,6 +1,6 @@
 import React from "react";
 import FeedbackSuccessContainer from "./styles";
-import { Button } from "../Button/styles";
+import Button from "../Button/styles";
 import iconOk from "../../assets/ok.png";
 
 const FeedbackSuccess = ({ onClick }) => (

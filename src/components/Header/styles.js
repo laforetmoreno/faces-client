@@ -9,6 +9,10 @@ const Header = styled.header`
   top: 0px;
   padding: 30px;
 
+  @media (max-width: 767px) {
+    padding: 20px 0;
+  }
+
   span {
     color: #fff;
     margin-left: 10px;

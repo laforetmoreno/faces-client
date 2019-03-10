@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const Button = styled.button`
+const Button = styled.button`
   color: #fff;
   padding: 20px;
   font-size: 16px;
@@ -38,3 +38,5 @@ export const Button = styled.button`
       width: 100%;
     `}
 `;
+
+export default Button;
