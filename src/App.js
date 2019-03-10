@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { uniqueId } from "lodash";
 import filesize from "filesize";
 import api from "./services/api";
@@ -9,13 +9,20 @@ import FormContainer from "./components/FormContainer/Form";
 import Upload from "./components/Upload/Upload";
 import FileList from "./components/FileList/FileList";
 import logoHurb from "./assets/logoHurb.png";
+import iconOk from "./assets/ok.png";
 import Header from "./components/Header/styles";
+import { Button } from "./components/Button/styles";
+import FeedbackSuccess from "./components/FeedbackSuccess/styles";
 
 class App extends Component {
   state = {
     uploadedFiles: [],
-    user: {}
+    user: {},
+    success: false
   };
+
+  hideFeedback = () => this.setState({ success: false });
+  showFeedback = () => this.setState({ success: true });
 
   // async componentDidMount() {
   //   const response = await api.get("posts");
@@ -113,24 +120,39 @@ class App extends Component {
     if (!user.name) return;
 
     user.avatar = uploadedFiles.map(file => file.url);
-    await api.post("/users", user);
+    const req = await api.post("/users", user);
+    console.log(req.status, "req");
+
+    if (req.status === 200) {
+      this.setState({ uploadedFiles: [] });
+      this.showFeedback();
+    }
   };
 
   render() {
-    const { uploadedFiles } = this.state;
+    const { uploadedFiles, success } = this.state;
     return (
       <Container>
         <Header>
           <img src={logoHurb} alt="Logo hurb" />
           <span>Faces</span>
         </Header>
-        <Content>
-          <Upload onUpload={this.handleUpload} />
-          {!!uploadedFiles.length && (
-            <FileList files={uploadedFiles} onDelete={this.handleDelete} />
-          )}
-          <FormContainer onSubmit={this.handleSubmit} />
-        </Content>
+        {success ? (
+          <FeedbackSuccess>
+            <img src={iconOk} alt="Sucesso" />
+            <Button onClick={this.hideFeedback} colorPrimary rounded fluid>
+              Cadastrar mais funcionários
+            </Button>
+          </FeedbackSuccess>
+        ) : (
+          <Content>
+            <Upload onUpload={this.handleUpload} />
+            {!!uploadedFiles.length && (
+              <FileList files={uploadedFiles} onDelete={this.handleDelete} />
+            )}
+            <FormContainer onSubmit={this.handleSubmit} />
+          </Content>
+        )}
         <GlobalStyle />
       </Container>
     );
