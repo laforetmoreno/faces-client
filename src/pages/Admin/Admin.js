@@ -1,16 +1,15 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { uniqueId } from "lodash";
 import filesize from "filesize";
-import api from "./services/api";
-import GlobalStyle from "./styles/global";
-import Container from "./components/Container/styles";
-import Content from "./components/Content/syles";
-import logoHurb from "./assets/logoHurb.png";
-import Header from "./components/Header/styles";
-import FeedbackSuccess from "./components/FeedbackSuccess/FeedbackSuccess";
-import SubscribeEmployees from "./components/SubscribeEmployees/SubscribeEmployees";
+import api from "../../services/api";
+import GlobalStyle from "../../styles/global";
+import Container from "../../components/Container/styles";
+import Content from "../../components/Content/syles";
+import Header from "../../components/Header/Header";
+import FeedbackSuccess from "../../components/FeedbackSuccess/FeedbackSuccess";
+import SubscribeEmployees from "../../components/SubscribeEmployees/SubscribeEmployees";
 
-class App extends Component {
+class Admin extends Component {
   state = {
     uploadedFiles: [],
     user: {},
@@ -128,10 +127,7 @@ class App extends Component {
     const { uploadedFiles, success } = this.state;
     return (
       <Container>
-        <Header>
-          <img src={logoHurb} alt="Logo hurb" />
-          <span>Faces</span>
-        </Header>
+        <Header />
         <Content>
           {success ? (
             <FeedbackSuccess onClick={this.hideFeedback} />
@@ -150,4 +146,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Admin;

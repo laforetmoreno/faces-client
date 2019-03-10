@@ -21,7 +21,7 @@ const Upload = ({ onUpload }) => {
 
   return (
     <div>
-      <Dropzone accept="image/png" onDropAccepted={onUpload}>
+      <Dropzone accept="image/*" onDropAccepted={onUpload}>
         {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
           <DropContainer
             {...getRootProps()}

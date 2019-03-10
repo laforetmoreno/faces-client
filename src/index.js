@@ -1,13 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import App from "./App";
+import Admin from "./pages/Admin/Admin";
+import App from "./pages/App/App";
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path="/" exact={true} component={() => <h1>teste</h1>} />
-      <Route path="/admin" component={App} />
+      <Route path="/" exact={true} component={App} />
+      <Route path="/admin" component={Admin} />
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")
