@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const FeedbackSuccess = styled.div`
+const FeedbackSuccessContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,4 +12,4 @@ const FeedbackSuccess = styled.div`
   }
 `;
 
-export default FeedbackSuccess;
+export default FeedbackSuccessContainer;

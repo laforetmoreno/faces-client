@@ -9,10 +9,10 @@ import FormContainer from "./components/FormContainer/Form";
 import Upload from "./components/Upload/Upload";
 import FileList from "./components/FileList/FileList";
 import logoHurb from "./assets/logoHurb.png";
-import iconOk from "./assets/ok.png";
 import Header from "./components/Header/styles";
 import { Button } from "./components/Button/styles";
-import FeedbackSuccess from "./components/FeedbackSuccess/styles";
+import FeedbackSuccess from "./components/FeedbackSuccess/FeedbackSuccess";
+import SubscribeEmployees from "./components/SubscribeEmployees/SubscribeEmployees";
 
 class App extends Component {
   state = {
@@ -137,22 +137,18 @@ class App extends Component {
           <img src={logoHurb} alt="Logo hurb" />
           <span>Faces</span>
         </Header>
-        {success ? (
-          <FeedbackSuccess>
-            <img src={iconOk} alt="Sucesso" />
-            <Button onClick={this.hideFeedback} colorPrimary rounded fluid>
-              Cadastrar mais funcionários
-            </Button>
-          </FeedbackSuccess>
-        ) : (
-          <Content>
-            <Upload onUpload={this.handleUpload} />
-            {!!uploadedFiles.length && (
-              <FileList files={uploadedFiles} onDelete={this.handleDelete} />
-            )}
-            <FormContainer onSubmit={this.handleSubmit} />
-          </Content>
-        )}
+        <Content>
+          {success ? (
+            <FeedbackSuccess onClick={this.hideFeedback} />
+          ) : (
+            <SubscribeEmployees
+              onUpload={this.handleUpload}
+              uploadedFiles={uploadedFiles}
+              onDelete={this.handleDelete}
+              onSubmit={this.handleSubmit}
+            />
+          )}
+        </Content>
         <GlobalStyle />
       </Container>
     );
