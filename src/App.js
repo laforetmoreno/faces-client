@@ -117,7 +117,6 @@ class App extends Component {
 
     user.avatar = uploadedFiles.map(file => file.url);
     const req = await api.post("/users", user);
-    console.log(req.status, "req");
 
     if (req.status === 200) {
       this.setState({ uploadedFiles: [] });
