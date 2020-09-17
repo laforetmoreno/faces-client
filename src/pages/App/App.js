@@ -20,14 +20,8 @@ class App extends Component {
     this.setState({ users: req.data });
   }
 
-  teste = data => {
-    this.setState({ st: true });
-    console.log(data, "data");
-  };
-
   render() {
     const { users, st } = this.state;
-    // console.log(users, "users");
     return (
       <Container>
         <Header />
